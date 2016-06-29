@@ -67,5 +67,3 @@ def get_users_tweets(handle):
         return 'Page Not Found'
     else:
         return 'An unknown error occured'
-
-x = get_users_tweets('@DonTrumpsToupee')
