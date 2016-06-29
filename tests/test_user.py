@@ -30,4 +30,4 @@ class TestUser(unittest.TestCase):
         self.assertRaises(TypeError, self.get_r_type_error)
 
     def test_get_users_tweets(self):
-        self.assertEqual(list, type(self.get_users_tweets.status_code))
+        self.assertEqual(list, type(self.get_users_tweets))
