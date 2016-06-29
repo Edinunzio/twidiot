@@ -57,11 +57,15 @@ def get_users_tweets(handle):
         stream = soup.select('.stream-items')[0]
         li = stream.select('li.stream-item')
         contents = [l.contents[1] for l in li]
-        original_tweets = []
+        tweets = []
         for c in contents:
             if c['data-screen-name'] == handle[1:]:
                 txt = c.text.split(handle[1:])
-                original_tweets.append(txt[1])
-        return original_tweets
+                tweets.append(txt[1])
+        return tweets
+    elif r.status_code == 404:
+        return 'Page Not Found'
+    else:
+        return 'An unknown error occured'
 
 x = get_users_tweets('@DonTrumpsToupee')

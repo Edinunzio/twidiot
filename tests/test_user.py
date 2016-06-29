@@ -6,6 +6,8 @@ class TestUser(unittest.TestCase):
 
     def setUp(self):
         self.get_users_tweets = get_users_tweets('@Claudie4')
+        self.get_fake_user = get_users_tweets('@ssadasihnlkhdoisyfoih')
+        self.get_user_type_error = get_users_tweets('dfh aja')
 
         self.get_users = get_users_by_liked_tweet('745892215969423360')
         self.get_false_id = get_users_by_liked_tweet('745892215969423')
@@ -31,3 +33,5 @@ class TestUser(unittest.TestCase):
 
     def test_get_users_tweets(self):
         self.assertEqual(list, type(self.get_users_tweets))
+        self.assertEqual("Page Not Found", self.get_fake_user)
+        self.assertRaises(TypeError, self.get_user_type_error)
