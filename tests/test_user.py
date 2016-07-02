@@ -24,4 +24,3 @@ class TestTwidiot(unittest.TestCase):
 
     def test_get_request(self):
         self.assertEqual("<class 'requests.models.Response'>", str(type(self.t._get_request(self.t.FAVORITED_URL, '745892215969423360'))))
-

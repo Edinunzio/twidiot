@@ -11,7 +11,7 @@ class Twidiot(object):
         self.USER_ACTIVITY = '/with_replies'
 
     def get_recent_activity(self, handle):
-        handle = self.PREFIX + str(handle[1:]) # trim @
+        handle = self.PREFIX + str(handle[1:])  # trim @
         r = self._get_request(handle, self.USER_ACTIVITY)
         if r.status_code == 200:
             soup = BeautifulSoup(r.content, 'html.parser')
