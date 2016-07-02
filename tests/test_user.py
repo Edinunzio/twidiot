@@ -25,12 +25,10 @@ class TestTwidiot(unittest.TestCase):
 
     def test_liked_by(self):
         self.assertEqual(list, type(self.liked_by))
-        self.assertEqual(self.expected_list, self.liked_by)
         self.assertEqual('Tweet Not Found', self.t_not_found)
         self.assertRaises(TypeError, self.get_type_error)
 
     def test_retweeted_by(self):
         self.assertEqual(list, type(self.get_r_users))
-        self.assertEqual(self.r_expected_list, self.get_r_users)
         self.assertEqual('Tweet Not Found', self.get_r_false_id)
         self.assertRaises(TypeError, self.get_r_type_error)
