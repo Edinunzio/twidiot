@@ -1,11 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 
-PREFIX = 'https://twitter.com/'
-FAVORITED_URL = PREFIX + 'i/activity/favorited_popup?id='
-RETWEETED_URL = PREFIX + '/i/activity/retweeted_popup?id='
-USER_ACTIVITY = '/with_replies'
-
 
 class Twidiot(object):
 
@@ -58,9 +53,9 @@ class Twidiot(object):
 
     def retweeted_by(self, tweet_id):
         try:
-            url = RETWEETED_URL + tweet_id
+            url = self.RETWEETED_URL + tweet_id
         except TypeError:
-            url = RETWEETED_URL + str(tweet_id)
+            url = self.RETWEETED_URL + str(tweet_id)
 
         r = requests.get(url)
         if r.status_code == 200:
