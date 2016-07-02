@@ -2,7 +2,7 @@ import unittest
 from users.user import Twidiot
 
 
-class TestUser(unittest.TestCase):
+class TestTwidiot(unittest.TestCase):
 
     def setUp(self):
         self.t = Twidiot()
@@ -13,12 +13,10 @@ class TestUser(unittest.TestCase):
         self.liked_by = self.t.liked_by('745892215969423360')
         self.t_not_found = self.t.liked_by('745892215969423')
         self.get_type_error = self.t.liked_by(74589221596942)
-        self.expected_list = [u'@Claudie4', u'@FancyFreeSydney', u'@GGG_says', u'@renzocapetti29', u'@daniellstevens', u'@TenorioPraxGab', u'@mr_preface', u'@ncartwright34', u'@hrlaube', u'@OkemwaNeaman', u'@JohnnySoftware', u'@momo24k5', u'@davemoskowitz10', u'@SidSeven777']
 
         self.get_r_users = self.t.retweeted_by('745892215969423360')
         self.get_r_false_id = self.t.retweeted_by('745892215969423')
         self.get_r_type_error = self.t.retweeted_by(74589221596942)
-        self.r_expected_list = [u'@Claudie4', u'@GGG_says', u'@JasonBerger1', u'@cunningrabbit', u'@QxNews', u'@prattreport', u'@davemoskowitz10', u'@GenXFiles']
 
     def test_get_recent_activity(self):
         self.assertEqual(list, type(self.get_recent_activity))

@@ -93,3 +93,4 @@ ENV/
 
 # Output
 output.txt
+tests/test_twidiot.py
