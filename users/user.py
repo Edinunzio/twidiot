@@ -11,11 +11,8 @@ class Twidiot(object):
         self.USER_ACTIVITY = '/with_replies'
 
     def get_recent_activity(self, handle):
-        try:
-            url = self.PREFIX + handle[1:] + self.USER_ACTIVITY
-        except TypeError:
-            url = self.PREFIX + str(handle[1:]) + self.USER_ACTIVITY
-        r = requests.get(url)
+        handle = self.PREFIX + str(handle[1:]) # trim @
+        r = self._get_request(handle, self.USER_ACTIVITY)
         if r.status_code == 200:
             soup = BeautifulSoup(r.content, 'html.parser')
             stream = soup.select('.stream-items')[0]
@@ -33,12 +30,7 @@ class Twidiot(object):
             return 'An unknown error occured'
 
     def liked_by(self, tweet_id):
-        try:
-            url = self.FAVORITED_URL + tweet_id
-        except TypeError:
-            url = self.FAVORITED_URL + str(tweet_id)
-
-        r = requests.get(url)
+        r = self._get_request(self.FAVORITED_URL, tweet_id)
         if r.status_code == 200:
             parsed_json = r.json()
             html = parsed_json['htmlUsers'].encode('ascii', 'ignore')
@@ -52,12 +44,7 @@ class Twidiot(object):
             return 'An unknown error occured'
 
     def retweeted_by(self, tweet_id):
-        try:
-            url = self.RETWEETED_URL + tweet_id
-        except TypeError:
-            url = self.RETWEETED_URL + str(tweet_id)
-
-        r = requests.get(url)
+        r = self._get_request(self.RETWEETED_URL, tweet_id)
         if r.status_code == 200:
             parsed_json = r.json()
             html = parsed_json['htmlUsers'].encode('ascii', 'ignore')
@@ -69,3 +56,12 @@ class Twidiot(object):
             return 'Tweet Not Found'
         else:
             return 'An unknown error occured'
+
+    @staticmethod
+    def _get_request(prefix, ending):
+        try:
+            url = prefix + ending
+        except TypeError:
+            url = prefix + str(ending)
+        r = requests.get(url)
+        return r
